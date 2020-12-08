@@ -15,13 +15,13 @@ root.title('Digital Clock')
 ##function strftime converts time objects to their string representation
 def time(): 
   string = strftime('%H: %M: %S %p')
-  lbl.config(text = string) 
-  lbl.after(1000, time)
+  label.config(text = string) 
+  label.after(1000, time)
   
-lbl = Label(root, font = ('Times New Roman', 60, 'bold'), background  = 'purple',
+label = Label(root, font = ('Times New Roman', 60, 'bold'), background  = 'purple',
                          foreground = 'white')
                          
-lbl.pack(anchor = 'center') 
+label.pack(anchor = 'center') 
 time() 
 
 mainloop()
