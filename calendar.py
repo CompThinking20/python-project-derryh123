@@ -1,74 +1,84 @@
-import datetime 
+import calendar 
+from tkinter import *
 
 
-def weather(): 
-    ##This function focuses on providing weather 
-    ##updates. I would need to provide a source first
+##simple python program to display one month of the year 
+#yy = 2020
+#mm = 12
+
+##print(calendar.month(yy, mm))
+
+
+##This function for the calendar is a little more interactive.
+##Its a gui and creates a separate window to view the date.
+##this function shows the whole year as well 
+##I wanted to test out something more interactive since 
+##it will be part of a smart mirror which should include visual components.
+def Calendar():
     
-  resp = requests.get('')
+    #creates graphical interface window
+    new_gui = Tk()
+
+    #background color
+    new_gui.config(background = "blue")
+
+    new_gui.title("Calendar")
+
+    new_gui.geometry("500x600")
+
+    #returns text as string
+    fetch_year = int(year_field.get())
+
+    #method from calendar module which returns calendar of given year
+    cal_content = calendar.calendar(fetch_year)
+
+    cal_year = Label(new_gui, text = cal_content, font = "Calibri 10 bold")
+
+    cal_year.grid(row = 5, column = 1, padx = 20)
+
+    new_gui.mainloop()
+
+##driver
+if ___name__ ==  "__main__":
+
+    gui = Tk()
+
+    gui.config(background = "white") 
   
-  ##esponse.json() returns a JSON object. The requests are generally used to fetch the content from a particular resource URI.
-
-  weatherData = resp.json() 
-  return weatherData
-
-
-def calender(): 
-    ""The calender function provides the date and time.
-    I would need to implement more code for the display. 
-    Im using an if statement to assign number to months.
-    The datetime.now is used to return current local date 
-    and time under the datetime built-in module.""
     
+    gui.title("CALENDER") 
+  
+    
+    gui.geometry("250x140") 
+  
+     
+    cal = Label(gui, text = "CALENDAR", bg = "dark gray", 
+                            font = ("times", 28, 'bold')) 
+  
+    # where you enter the year 
+    year = Label(gui, text = "Enter Year", bg = "light green") 
+      
+    # text entry box  
+    year_field = Entry(gui) 
+  
+    # Create a button to show calendar 
+    Show = Button(gui, text = "Show Calendar", fg = "Black", 
+                              bg = "Red", command = Calendar) 
+  
+    Exit = Button(gui, text = "Exit", fg = "Black", bg = "Red", command = exit) 
+      
+    # grid method is used for placing  
+    # the widgets at respective positions  
+    cal.grid(row = 1, column = 1) 
+  
+    year.grid(row = 2, column = 1) 
+  
+    year_field.grid(row = 3, column = 1) 
+  
+    Show.grid(row = 4, column = 1) 
+  
+    Exit.grid(row = 6, column = 1) 
 
-    time = datetime.datetime.now() 
-    day = time.day 
-    month = time.month
-    year = time.year 
-    minute = time.minute 
-
-    if minute < 10: 
-        minute = '0'+str(minute)
-
-    hour = time.hour 
-    weekday = time.strftime("%A")
-
-    if month = 1: 
-        month = 'January'
-    elif month == 2: 
-        month = 'Feburary'
-    elif month == 3: 
-        month = 'March'
-    elif month == 4: 
-        month = 'April'
-    elif month == 5: 
-        month = 'May'
-    elif month == 6: 
-        month = 'June'
-    elif month == 7: 
-        month = 'July'
-    elif month == 8: 
-        month = 'August'
-    elif month == 9: 
-        month = 'September'
-    elif month == 10: 
-        month = 'October'
-    elif month == 11: 
-        month = 'November'
-    elif month == 12: 
-        month = 'December'
-
-    date = str(day) + '/' + month + '/' + year
-##title displays the message that would be present on the 
-##mirror depending on the time of day. 
-    title = ''
-
-    if 3 < hour < 12: 
-        title = 'Good Morning'
-    elif 12 < hour < 16: 
-        title = 'Good Afternoon'
-    elif 16 < hour < 19: 
-        title = "Good Evening"
-    elif 19 < hour < 3: 
-        title = "Good Night"
+    ##starts the gui
+    gui.mainloop() 
         
